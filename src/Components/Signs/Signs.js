@@ -1,10 +1,10 @@
-import React , {useState,useEffect} from 'react';
+import React , {useState} from 'react';
 import {FaUser, FaUserAlt} from 'react-icons/fa';
 import {FaEnvelope} from 'react-icons/fa';
 import {GiPadlock} from 'react-icons/gi';
 import {  Tween } from 'react-gsap';
 import Axios from 'axios'
-import {Redirect, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 
 //  
@@ -14,8 +14,7 @@ function Signs(props) {
           <h2 style={{textAlign:'center'}}>{props.act}</h2>     
             <div className="sign-content center-content">
             {props.act === 'Login' ?
-            ( 
-                <In changeUserData = {props.changeUserData} changeAuth = {props.changeAuth} changeLocation= {props.changeLocation} />
+            (     <In changeUserData = {props.changeUserData} changeAuth = {props.changeAuth} changeLocation= {props.changeLocation} />
                           
              ) : (<Up  />)}
             </div>
@@ -24,8 +23,8 @@ function Signs(props) {
 }
 
 function In(props){ 
-    const [userName, setuserName] = useState('winsot')
-    const [passWord, setPassword] = useState('k99')    
+    const [userName, setuserName] = useState('')
+    const [passWord, setPassword] = useState('')    
     let history = useHistory();
 
 

@@ -5,9 +5,9 @@ export default function ProfileNav(props) {
     return (
         <div className="profileNav-Body center-content">
             <div className="profileNav-Body-left"> 
-                <h3>Linkers</h3>
+                <h3 style={{fontFamily:'Palette Mosaic, cursive'}}>Linkers</h3>
                 <div className="divider"></div>
-                <p>{userData.lname}  {userData.fname}</p> 
+                <p style={{fontFamily:' Poppins, sans-serif'}}>{userData.lname}  {userData.fname}</p> 
             </div>
             <div className="profileNav-Body-right">
                

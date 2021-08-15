@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Starter from './Components/Starter/Starter';
 import reportWebVitals from './reportWebVitals';
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import mergedReducers from './Reducers/mergedReducers'
+
+const store = createStore(mergedReducers,
+   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store = {store}>
     <Starter />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
