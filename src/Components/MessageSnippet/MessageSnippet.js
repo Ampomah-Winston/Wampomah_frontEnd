@@ -47,7 +47,7 @@ export default function MessageSnippet(props) {
         color:'',
         border: `2px solid ${message_body_style_color}`,        
         borderRadius:'10px',
-        padding:'3px',
+        padding:'2px',
         display:'flex',
         alignItems:'flex-start',
         justifyContent:'space-between',
@@ -66,7 +66,7 @@ export default function MessageSnippet(props) {
         color:'',
         border: '2px solid hotpink',        
         borderRadius:'10px',
-        padding:'3px',
+        padding:'2px',
         display:'flex',
         alignItems:'flex-end',
         justifyContent:'space-between',
@@ -85,8 +85,9 @@ export default function MessageSnippet(props) {
                     <i style={{
                             fontSize:'9px',
                             width:'100%',
-                            textAlign:'right',
+                            textAlign:'left',
                             marginTop:'2px',
+                            paddingBottom:'2px',
                             borderBottom:`1px solid ${message_body_style_color}`}}>
                             {props.composer}</i>
                         {/* Message it self  */}
@@ -96,7 +97,8 @@ export default function MessageSnippet(props) {
                             fontSize:'9px',
                             width:'100%',
                             textAlign:'right',
-                            marginTop:'2px',
+                            marginTop:'5px',
+                            paddingTop:'5px',
                             borderTop:`1px solid ${message_body_style_color}`}}>{props.time}</i>
                     </div>
                 </> : 
@@ -108,15 +110,12 @@ export default function MessageSnippet(props) {
                             width:'100%',
                             textAlign:'right',
                             marginTop:'2px',
+                            paddingTop:'2px',
                             borderTop:'1px solid hotpink'}}>{props.time}</i>
                 </div>
                 <img className="message-avatar"  src = {logo} style={message_core_avatar}/>
                 </>
                 }
-
-
-
-                
             </div>
         </div>
     )

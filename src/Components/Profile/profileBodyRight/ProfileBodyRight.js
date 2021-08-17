@@ -27,8 +27,8 @@ export default function ProfileBodyRight(props) {
                 </div>
                 <div className="user-card-list">
                     {
-                        usersList.map((userData)=>{
-                            return <User_Card key = {userData.id} userData = {userData}/> 
+                        usersList.map((foundata)=>{
+                            return <User_Card key = {foundata.id} myid={props.userData.id} foundata = {foundata}/> 
                         })
                     }
                     {/* <User_Card/>   */}

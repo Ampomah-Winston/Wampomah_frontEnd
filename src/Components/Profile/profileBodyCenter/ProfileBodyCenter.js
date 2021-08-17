@@ -7,7 +7,10 @@ import MessageSnippet from '../../MessageSnippet/MessageSnippet';
 import {useSelector, useDispatch} from 'react-redux'
 //import an action 
 import {appendMessage,clearMessage} from '../../../actions/messageAction';
-import {addToList} from '../../../actions/messageListAction';//use to add to state of message list
+//use to add to state of message list
+import {addToList} from '../../../actions/messageListAction';
+//use to clear message list especially when switching rooms
+import {clearList } from '../../../actions/clearMessageListAction';
 import {setSocket} from '../../../actions/socketSetAction';
 
 
@@ -25,9 +28,7 @@ export default function ProfileBodyCenter(props) {
     // after the profile left component has set the redux current chat to a new object
     // we have to come receive it to determine it where to send our chat msgs
     const {gname,gid} = useSelector(state=> state.chatRef);
-
-
-
+    
     //get Socket from Profile socket
     // const socket = props.socketer;
     // console.log(socket)
@@ -68,12 +69,22 @@ export default function ProfileBodyCenter(props) {
                 dispatch(addToList(message));
             });
 
-    }, [CONNECTION_URL]);
+    }, [gname]);
+
+    //the useEffect below listens to when chatref changes, then we make user join the new room
+    useEffect(()=>{
+        JoinAroom(socket, {
+            group: `${gid}`,
+            author: props.userData.fname,
+            time: moment().format('MMMM Do YYYY, HH:mm a') 
+        });
+        dispatch(clearList())
+    },[gname])
 
     //handle submit 
     function handleSubmitMessage(e){
         let msgContent = {
-            group: 'linkers',
+            group: `${gid}`,
             composer: props.userData.fname,
             title:'sendGroupMsg',
             dir:'out',
