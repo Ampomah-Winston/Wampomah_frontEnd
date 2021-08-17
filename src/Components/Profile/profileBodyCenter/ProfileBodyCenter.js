@@ -22,6 +22,12 @@ export default function ProfileBodyCenter(props) {
     const messageList = useSelector(state => state.messageList);//this is an array of all messages
     // const socket = useSelector(state => state.socketer);//get socket state set by profile component on start
 
+    // after the profile left component has set the redux current chat to a new object
+    // we have to come receive it to determine it where to send our chat msgs
+    const {gname,gid} = useSelector(state=> state.chatRef);
+
+
+
     //get Socket from Profile socket
     // const socket = props.socketer;
     // console.log(socket)
@@ -41,26 +47,26 @@ export default function ProfileBodyCenter(props) {
         socket = IO(CONNECTION_URL);   
         dispatch(setSocket(socket));//dispatch socket to the redux state
         
-            // socket.on('ServerCom', message => {       
-            //     console.log("serverCom",message);   
-            //     dispatch(addToList(message));
-            // });
+            socket.on('ServerCom', message => {       
+                console.log("serverCom",message);   
+                dispatch(addToList(message));
+            });
             // JOin room  join default room on start of app
             JoinAroom(socket, {
-                group: 'linkers',
+                group: `${gid}`,
                 author: props.userData.fname,
                 time: moment().format('MMMM Do YYYY, HH:mm a') 
             });
-            //get group message
+            // get group message
             socket.on('groupResponse', data => {
                 data.dir = 'in';
                 dispatch(addToList(data));
             })
 
-            // socket.on('flapMessage', message => {    
-            //     alert(message.msg);      
-            //     dispatch(addToList(message));
-            // });
+            socket.on('flapMessage', message => {    
+                alert(message.msg);      
+                dispatch(addToList(message));
+            });
 
     }, [CONNECTION_URL]);
 
@@ -91,7 +97,7 @@ export default function ProfileBodyCenter(props) {
 
     return (
         <div className="ProfileBody-Body-center top-center-content">
-                <span> CHAT with <i>{}</i> </span>
+                <span> Linked with <span> ~ {gname.toUpperCase()} ~ </span> </span>
                     <div className="chat-body">
                     {
                          messageList.map((message) => {

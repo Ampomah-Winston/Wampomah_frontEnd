@@ -4,23 +4,34 @@ import {FaSearch} from 'react-icons/fa';
 import Axios from 'axios'
 
 export default function ProfileBodyRight(props) {
-    const [userList, setUserList] = useState([]);
+    const [usersList, setUsersList] = useState([]);
 
-    Axios.post('http://localhost:5000/users/search',{
-        data : 'b'
-    }).then(res=>{
-
-    });
+    function handleOnSearchUser(e){
+        Axios.get(`http://localhost:5000/users/search/${e.target.value }`).then((res)=>{
+            // console.log(res.data)
+            if(res.data){
+                setUsersList(res.data);
+            }
+            console.log('now list =>',usersList)
+        }).catch((reason)=>{
+            console.log(reason)
+        })
+    }
 
     return (
         <div className="ProfileBody-Body-right top-center-content">
-                <h4 style={{margin:'0%',textAlign:"left"}}>Search User</h4>
+              
                 <div className="ProfileBody-Srch-Users ">
                     <FaSearch/>
-                    <input type = "text" placeholder="Search user here"/>
+                    <input type = "text" placeholder="Search user here" onChange={handleOnSearchUser}/>
                 </div>
                 <div className="user-card-list">
-                    {/* <User_Card/>                     */}
+                    {
+                        usersList.map((userData)=>{
+                            return <User_Card key = {userData.id} userData = {userData}/> 
+                        })
+                    }
+                    {/* <User_Card/>   */}
                 </div>
         </div>
     )

@@ -15,7 +15,7 @@ function GroupMember(props) {
 
     //action to remove a user from the current group creation list 
     function handleUserRemove_From_List(e){
-       console.log(e.target.parentElement.attributes.userid)
+       console.log(e.target.parentElement.attributes.userid);
     }
 
     const style = {
@@ -23,7 +23,7 @@ function GroupMember(props) {
         height:"30px",
         backgroundColor:`rgb(${randomColor()})`,
         color:"darkslategrey",
-        margin:'2px',
+        margin:'5px',
         fontSize:"0.9em",
         borderRadius:"2px",
         display:"flex",
@@ -33,7 +33,7 @@ function GroupMember(props) {
     return (
         <li key={props.id} style ={style} userid={props.id}>                              
             <i> {<FaRegEye style ={{cursor:'pointer'}} />} {props.uname } </i>                               
-            <FaTrashAlt style ={{cursor:'pointer'}} userid={props.id} onClick={handleUserRemove_From_List}/>                               
+            <FaTrashAlt style ={{cursor:'pointer'}} userid={props.id} onClick={props.handleDelFromList}/>                               
          </li>
     )
 }

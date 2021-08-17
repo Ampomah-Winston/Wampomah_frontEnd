@@ -37,7 +37,7 @@ function In(props){
             if(res.data[0]){
                 props.changeAuth(true);
                 props.changeUserData(res.data[0]);
-                history.push('/profile');
+                history.push('/profile');//redirect to profile page
             }else{
                 props.changeAuth(false);
             }

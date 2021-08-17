@@ -91,7 +91,7 @@ export default function Profile(props) {
                 display: 'flex',
                 marginTop: '10px'
             }}>
-                <ProfileBodyLeft />
+                <ProfileBodyLeft userData = {profileData}/>
                 <ProfileBodyCenter userData = {profileData} />
                 <ProfileBodyRight />
             </div>

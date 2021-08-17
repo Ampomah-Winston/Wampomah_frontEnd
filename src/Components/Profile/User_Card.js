@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import { Draggable } from 'react-drag-and-drop';
 import { Tween } from 'react-gsap';
+import { FaLink } from 'react-icons/fa';
 
 export default function User_Card(props) {
 
@@ -20,21 +21,20 @@ export default function User_Card(props) {
         height:"10%",
         maxHeight:"50%"
     }
-    const outData = {
-        id:`${Math.floor(Math.random()*1000)+100}`, 
-        uname:"Ampomah"
-    }
     return (
         <Draggable 
             type = "user_card" 
-            data={JSON.stringify(outData)}>
+            data={JSON.stringify(props.userData)}>
             <div className="user-card" style={{background: `linear-gradient(to right, darkslategray, rgb(${randomColor()}))`}}>
                 <Tween to={{ rotation: 360,opacity:1 }} duration={1} repeat={-1} delay={1}>
                     <img src={logo} style={{
                         width:"20%"
                     }}/>
                 </Tween>
-                <p style={{fontSize:"0.9em"}}>{outData.uname}</p>
+                <p style={{fontSize:"0.9em"}}>{props.userData.fname}  {props.userData.lname}</p>
+                <i onClick={()=>{
+                    alert(`Link with ${props.userData.fname}`)
+                }}> <FaLink/> </i>
             </div>
         </Draggable>
     )
