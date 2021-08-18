@@ -4,17 +4,19 @@ import TextPlugin from 'gsap/TextPlugin';
 import { Link } from 'react-router-dom';
 import { Tween } from 'react-gsap';
 import Goodshow from '../../assets/images/svg/Goodshow.svg'
+import {useHistory} from 'react-router-dom';
 
 
 export default function PushOut(props){
-    console.log(props);
+    let history = useHistory();
     gsap.registerPlugin(TextPlugin);
     // let logo = useRef(null)
    const [start,setStart] = useState(false);
    useEffect(() => {
        setTimeout(()=>{
             setStart(true)
-       },5000)
+            history.push('/App')
+       },8000)
    }, [])
     const randomColor = () =>{
         let color = [];

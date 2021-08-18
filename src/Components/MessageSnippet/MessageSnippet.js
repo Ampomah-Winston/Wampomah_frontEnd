@@ -51,7 +51,7 @@ export default function MessageSnippet(props) {
         display:'flex',
         alignItems:'flex-start',
         justifyContent:'space-between',
-        backgroundColor:'transparent',
+        backgroundColor:'white',
         flexDirection:'column',
         padding:'10px'
     }
@@ -70,7 +70,7 @@ export default function MessageSnippet(props) {
         display:'flex',
         alignItems:'flex-end',
         justifyContent:'space-between',
-        backgroundColor:'transparent',
+        backgroundColor:'white',
         flexDirection:'column',
         padding:'10px'
     }

@@ -10,7 +10,8 @@ export default function ProfileBodyRight(props) {
         Axios.get(`http://localhost:5000/users/search/${e.target.value }`).then((res)=>{
             // console.log(res.data)
             if(res.data){
-                setUsersList(res.data);
+                // let data = res.data.filter(e=>e.id != props.userData.id)
+                setUsersList(res.data.filter(e=>e.id != props.userData.id));
             }
             console.log('now list =>',usersList)
         }).catch((reason)=>{

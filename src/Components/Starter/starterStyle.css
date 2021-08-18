@@ -21,6 +21,8 @@ html,body{
     height: 100vh;
     background-color: hotpink;
     opacity: 0;
+    background-image: url('../../assets/images/png/triangles.png');
+    background-size: cover;
 }
 
 /* Nav component styling khaki;*/
@@ -141,13 +143,17 @@ form{
         height: 100vh;
         background-color: darkslategray;
         overflow-y: hidden;
+        background-image: url('../../assets/images/png/triangles.png');
     }
 
     .profileNav-Body{
         width: 100%;
         height: 10%;
         background-color: rgb(201, 81, 141);
-        color:rgb(0, 0, 0)
+        color:rgb(0, 0, 0);
+        /* background-image: url('../../assets/images/png/triangles.png'); */
+        border-bottom: 2px solid linear-gradient(darkslategray,white);
+        
     }
 
     .profileNav-Body-left {
@@ -232,24 +238,27 @@ form{
         width:80%;
         height:5%;
         border:2px solid hotpink;
-        color:hotpink;
+        color:darkslategray;
         margin-Top:5px;
         font-Family:'poppins';
         cursor: pointer;
+        font-weight: 900;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .group_chat_object{
         width:100%;
-        height:90px;
-        border-bottom:2px solid hotpink;
-        color:hotpink;
+        /* height:90px; */
+        /* border-bottom:2px solid hotpink; */
+        color:darkslategray;
         margin-Top:2px;
         font-Family:'poppins';
         cursor: pointer;
-        font-Weight:'bolder';  
         position: relative;
         font-weight: bolder;
         transition: 0.3s;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: hotpink;
     }
 
     .group_chat_object i {
@@ -266,8 +275,7 @@ form{
         height: 50px;
         min-height: 100px;
         max-height: 150px;
-        border:1px solid hotpink;
-        color:hotpink;
+        border:2px solid hotpink;
         margin-Top:5px;
         font-Family:'poppins';
         overflow-y: auto;
@@ -280,7 +288,7 @@ form{
         width: 60%;
         height: 90%;
         background-color: transparent;
-        color:khaki;
+        color:darkslategray;
         border-left: 2px dashed hotpink;
         /* background: url('../../assets/images/svg/Rainbow-Vortex.svg');
         background-repeat: no-repeat;
@@ -292,14 +300,13 @@ form{
         height: 85%;
         max-height: 85%;
         overflow-y: auto;
-        border-bottom: 2px dotted hotpink;
-        border-top: 2px dotted hotpink;
+        /* border-bottom: 2px dotted hotpink; */
+        /* border-top: 2px dotted hotpink; */
     }
 
     .chat-composition{
         width: 95%;
         height: 15%;
-        background-color: darkslategray;
         margin: 5px;
 
         display: flex;
@@ -325,12 +332,13 @@ form{
         outline:'none';
         padding:'5px';
         font-Size:'1.2em';
-        background-Color:'darkslategray';
+        /* background-Color:darkslategray; */
         box-Shadow: 1px 1px 4px hotpink;
         color:"khaki";
         border-Bottom-Right-Radius:50px;
         border-Top-Left-Radius:20px;
         font-family:  cursive;
+        /* background-image: url('../../assets/images/png/triangles.png'); */
         
     }
 

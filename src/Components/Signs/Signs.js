@@ -102,11 +102,15 @@ function Up(props){
             password: pWord
         }).then(res=>{
             if(res === 'uRs-01'){
-                // props.changeLocation('uRs-01')
+                return <In/>
             }
         }).catch(reson=>{
             console.log(reson)
-        })
+        });
+        setFname('')
+        setLname('')
+        setEmail('')
+        setPword('')
     }
     
     return(

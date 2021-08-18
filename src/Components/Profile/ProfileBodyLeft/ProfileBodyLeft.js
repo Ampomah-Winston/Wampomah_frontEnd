@@ -25,6 +25,7 @@ function ProfileBodyLeft(props) {
 
     //groups i belong
     const [myGroups, setMyGroups] = useState([]);
+    const [mySingleChats, setMySingleChats] = useState([]);
 
      //set style for the droppable div
      const createGroup_Form = {
@@ -32,7 +33,7 @@ function ProfileBodyLeft(props) {
         width:"200px",
         height: "150px",
         maxHeight:"350px",
-        border:"2px solid hotpink",
+        border:"1px solid #e65f33",
         overflowY:"auto",
         margin:'0',
         listStyle:'none',
@@ -78,6 +79,30 @@ function ProfileBodyLeft(props) {
         marginBottom: '7px',
         marginTop: '7px'
     }
+    //load single chats user is involved
+    function load_single_chat(){ 
+        Axios.post('http://localhost:5000/singlechat/getAll',{
+            userID: props.userData.id
+        }).then(res=>{
+            console.log(' ==> ',res)
+            res.data.map(data=>{
+                Axios.post('http://localhost:5000/users/id',{
+                    id : data.coop_id
+                }).then(res=>{
+                    setMySingleChats(prev=>[...prev,{
+                        fname:res.data[0].fname,
+                        chatid:data.chatid
+                    }])
+                    // some.push
+                    console.log(res.data[0])
+                })
+            })
+
+
+            // setMySingleChats(res.data)
+        });
+    }   
+
     //load my groups | db ops
     function load_groups(){
         Axios.post('http://localhost:5000/chatGroup/myGroups',{
@@ -88,7 +113,8 @@ function ProfileBodyLeft(props) {
     }
 
     useEffect(()=>{
-        load_groups()
+        load_single_chat();
+        load_groups();
     },[])
 
 //function to create group db ops
@@ -113,14 +139,20 @@ function ProfileBodyLeft(props) {
     return (
         <div className="ProfileBody-Body-left top-center-content">
                  <div className="chat_collection">
-                     <FaAngleDown/> Chats <FaUser/>
+                     <FaAngleDown/> My Linkers <FaUser/>
                  </div>
                     
                  <div className="group_chat_collection">
+                 {mySingleChats.map((chatData)=>{
+                        return <GroupChatObject 
+                            key ={chatData.chatid} 
+                            gname = {chatData.fname}
+                            gid ={chatData.chatid}/>
+                    })} 
                  </div>
 
                 <div className="chat_collection">
-                     <FaAngleDown/> Group Chat <FaUsers/>
+                     <FaAngleDown/> My Groups <FaUsers/>
                  </div>
 
                  <div className="group_chat_collection top-center-content">

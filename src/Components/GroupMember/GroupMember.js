@@ -27,7 +27,8 @@ function GroupMember(props) {
         fontSize:"0.9em",
         borderRadius:"2px",
         display:"flex",
-        justifyContent:"space-between"
+        justifyContent:"space-between",
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
     }
 
     return (

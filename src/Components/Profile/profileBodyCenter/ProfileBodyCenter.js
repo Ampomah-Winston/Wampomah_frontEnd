@@ -133,7 +133,7 @@ export default function ProfileBodyCenter(props) {
                             outline:'none',
                             padding:'5px',
                             fontSize:'1.2em',
-                            backgroundColor:'darkslategray',
+                            // backgroundColor:'darkslategray',
                             boxShadow: `1px 1px 4px khaki`,
                             color:"khaki"
                             }}>
