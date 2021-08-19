@@ -25,6 +25,22 @@ html,body{
     background-size: cover;
 }
 
+/*  */
+.google-login{
+    width: 40%;
+    height: 5%;
+    background-color: darkslategray;
+    border: 1px solid orange;
+    display: grid;
+    place-items: center;
+    color: orange;
+    cursor: pointer;
+}
+
+.google-login:active{
+    opacity: 0.5;
+}
+
 /* Nav component styling khaki;*/
 nav{
     border-bottom: 3px solid darkslategray; 

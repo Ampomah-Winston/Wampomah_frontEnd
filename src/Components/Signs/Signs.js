@@ -5,8 +5,9 @@ import {GiPadlock} from 'react-icons/gi';
 import {  Tween } from 'react-gsap';
 import Axios from 'axios'
 import {useHistory} from 'react-router-dom';
-
-
+import {useDispatch} from 'react-redux';
+import {setAuthorizedAction} from '../../actions/setAuthorized'
+import {setProfileDataAction} from '../../actions/setProfileDataAction'
 //  
 function Signs(props) {       
     return (
@@ -16,13 +17,14 @@ function Signs(props) {
             {props.act === 'Login' ?
             (     <In changeUserData = {props.changeUserData} changeAuth = {props.changeAuth} changeLocation= {props.changeLocation} />
                           
-             ) : (<Up  />)}
+             ) : (<Up changeUserData = {props.changeUserData} changeAuth = {props.changeAuth} />)}
             </div>
         </div>
     )
 }
 
 function In(props){ 
+    const dispatch = useDispatch();
     const [userName, setuserName] = useState('')
     const [passWord, setPassword] = useState('')    
     let history = useHistory();
@@ -35,11 +37,12 @@ function In(props){
             password:passWord
         }).then(res=>{
             if(res.data[0]){
-                props.changeAuth(true);
-                props.changeUserData(res.data[0]);
+                dispatch(setAuthorizedAction(true))
+                dispatch(setProfileDataAction(res.data[0]))
                 history.push('/profile');//redirect to profile page
+                
             }else{
-                props.changeAuth(false);
+                dispatch(setAuthorizedAction(false))
             }
             
         })
@@ -88,6 +91,7 @@ function In(props){
 }
 
 function Up(props){
+    const history = useHistory();
     const [fName, setFname] = useState('');
     const [lName, setLname] = useState('');
     const [eMail, setEmail] = useState('');
@@ -101,9 +105,9 @@ function Up(props){
             email : eMail,
             password: pWord
         }).then(res=>{
-            if(res === 'uRs-01'){
-                return <In/>
-            }
+            props.changeAuth(true);
+            props.changeUserData(res.data[0]);
+            history.push('/profile');//redirect to profile page
         }).catch(reson=>{
             console.log(reson)
         });

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { FaFeatherAlt } from 'react-icons/fa';
 import IO from 'socket.io-client'
 
@@ -28,7 +28,7 @@ export default function ProfileBodyCenter(props) {
     // after the profile left component has set the redux current chat to a new object
     // we have to come receive it to determine it where to send our chat msgs
     const {gname,gid} = useSelector(state=> state.chatRef);
-    
+    const profileData = useSelector(state => state.profileData);
     //get Socket from Profile socket
     // const socket = props.socketer;
     // console.log(socket)
@@ -50,12 +50,12 @@ export default function ProfileBodyCenter(props) {
         
             socket.on('ServerCom', message => {       
                 console.log("serverCom",message);   
-                dispatch(addToList(message));
+                // dispatch(addToList(message));
             });
             // JOin room  join default room on start of app
             JoinAroom(socket, {
                 group: `${gid}`,
-                author: props.userData.fname,
+                author: profileData.fname,
                 time: moment().format('MMMM Do YYYY, HH:mm a') 
             });
             // get group message
@@ -64,10 +64,6 @@ export default function ProfileBodyCenter(props) {
                 dispatch(addToList(data));
             })
 
-            socket.on('flapMessage', message => {    
-                alert(message.msg);      
-                dispatch(addToList(message));
-            });
 
     }, [gname]);
 
@@ -75,7 +71,7 @@ export default function ProfileBodyCenter(props) {
     useEffect(()=>{
         JoinAroom(socket, {
             group: `${gid}`,
-            author: props.userData.fname,
+            author: profileData.fname,
             time: moment().format('MMMM Do YYYY, HH:mm a') 
         });
         dispatch(clearList())
@@ -85,7 +81,7 @@ export default function ProfileBodyCenter(props) {
     function handleSubmitMessage(e){
         let msgContent = {
             group: `${gid}`,
-            composer: props.userData.fname,
+            composer: profileData.fname,
             title:'sendGroupMsg',
             dir:'out',
             msg: message,

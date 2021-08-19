@@ -1,17 +1,16 @@
-import React , {useState,useEffect,useMemo} from 'react'
-import { Redirect,useHistory } from 'react-router-dom';
+import React , {useState} from 'react'
+import { Redirect} from 'react-router-dom';
 import ProfileNav from './profileNav/ProfileNav'
 import ProfileBodyLeft from './ProfileBodyLeft/ProfileBodyLeft';
 import ProfileBodyRight from './profileBodyRight/ProfileBodyRight';
 import ProfileBodyCenter from './profileBodyCenter/ProfileBodyCenter';
-
-let socket={};
-const CONNECTION_URL = 'http://localhost:4000/';
+import {useSelector} from 'react-redux'
 
 export default function Profile(props) {
+    const authorized = useSelector(state => state.authorized)
     const [profileData, setprofileData] = useState(props.userData)
     
-    if(!props.authorized)    {
+    if(!authorized) {
         return <Redirect to="/App" />
     }
 

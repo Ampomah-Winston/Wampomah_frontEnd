@@ -4,9 +4,10 @@ import { FaSearch, FaPlusCircle, FaToggleOn, FaAd, FaCheckDouble, FaArrowDown, F
 import GroupMember from '../../GroupMember/GroupMember';
 import Axios from 'axios';
 import GroupChatObject from '../../ChatObjects/GroupChatObject';
+import { useSelector } from 'react-redux';
 
 function ProfileBodyLeft(props) {
-
+    const profileData = useSelector(state => state.profileData)
     //set reference to group name input
     const inp_grp_name = useRef(null);
 
@@ -82,7 +83,7 @@ function ProfileBodyLeft(props) {
     //load single chats user is involved
     function load_single_chat(){ 
         Axios.post('http://localhost:5000/singlechat/getAll',{
-            userID: props.userData.id
+            userID: profileData.id
         }).then(res=>{
             console.log(' ==> ',res)
             res.data.map(data=>{
@@ -106,7 +107,7 @@ function ProfileBodyLeft(props) {
     //load my groups | db ops
     function load_groups(){
         Axios.post('http://localhost:5000/chatGroup/myGroups',{
-            userID: props.userData.id
+            userID: profileData.id
         }).then((res)=>{
             setMyGroups(res.data)
         })
@@ -122,7 +123,7 @@ function ProfileBodyLeft(props) {
         Axios.post('http://localhost:5000/chatGroup/createGroup',{
             group_data:{
                  group_name : inp_grp_name.current.value,
-                 group_owner: props.userData.id
+                 group_owner: profileData.id
             },           
             content : creatnGroupList
         }).then(res => {
