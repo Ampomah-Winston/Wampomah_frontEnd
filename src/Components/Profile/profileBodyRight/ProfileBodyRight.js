@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import User_Card from '../User_Card';
 import {FaSearch} from 'react-icons/fa';
 import Axios from 'axios'
@@ -11,7 +11,7 @@ export default function ProfileBodyRight(props) {
         Axios.get(`http://localhost:5000/users/search/${e.target.value }`).then((res)=>{
            if(res.data){
                 // let data = res.data.filter(e=>e.id != props.userData.id)
-                setUsersList(res.data.filter(e=>e.id != props.userData.id));
+                setUsersList(res.data.filter(e=>e.id !== props.userData.id));
             }
             console.log('now list =>',usersList)
         }).catch((reason)=>{

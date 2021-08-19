@@ -3,7 +3,7 @@ import './starterStyle.css';
 import './scrollBar.css'
 import Nav from '../Navbar/Nav';
 
-function Starter(props) {    
+function Starter() {    
     return (
         <div className="start-container"> 
           <Nav/>     

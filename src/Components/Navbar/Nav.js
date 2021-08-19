@@ -1,9 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Profile from '../Profile/Profile'
 import App from '../App/App';
 import PushOut from '../PushOut/PushOut';
-
 
 export default function Nav() {
     const [currentUserData, setcurrentUserData] = useState({});

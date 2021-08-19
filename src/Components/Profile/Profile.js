@@ -8,15 +8,15 @@ import {useSelector} from 'react-redux'
 
 export default function Profile(props) {
     const authorized = useSelector(state => state.authorized)
-    const [profileData, setprofileData] = useState(props.userData)
-    
+    const profileData = useSelector(state => state.profileData)
+
     if(!authorized) {
         return <Redirect to="/App" />
     }
 
     return (
         <div className="profile-body">
-            <ProfileNav userData = {profileData}/>
+            <ProfileNav />
             {/* <ProfileBody messageList = {messageList} outMsg = {composer_msg} handleComposer = {handleComposer} handleSubmitMessage = {handleSubmitMessage} /> */}
             <div  style={{
                 width: '100%',

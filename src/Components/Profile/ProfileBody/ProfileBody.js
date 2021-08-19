@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {FaSearch,FaFeatherAlt,FaPlusCircle,FaTrashAlt} from 'react-icons/fa';
+import {FaSearch,FaFeatherAlt,FaPlusCircle} from 'react-icons/fa';
 import User_Card from '../User_Card';
 import MessageSnippet from '../../MessageSnippet/MessageSnippet'
 import { Droppable } from 'react-drag-and-drop'

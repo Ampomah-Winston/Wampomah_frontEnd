@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-export default function ProfileNav(props) {
+export default function ProfileNav() {
     // const [userData, setUserData] = useState(props.userData)
     const profileData = useSelector(state => state.profileData)
     return (

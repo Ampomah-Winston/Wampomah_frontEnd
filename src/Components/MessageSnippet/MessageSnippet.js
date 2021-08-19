@@ -39,7 +39,6 @@ export default function MessageSnippet(props) {
     let message_body_style_color = `rgb(${randomColor()})`;
     const message_core_style_in = {
         fontFamily: `'Courier New', Courier, monospace`,
-        backgroundColor: "darkslategray",
         width:'85%',
         maxHeight:'250px',
         overflowY:'auto',
@@ -47,7 +46,6 @@ export default function MessageSnippet(props) {
         color:'',
         border: `2px solid ${message_body_style_color}`,        
         borderRadius:'10px',
-        padding:'2px',
         display:'flex',
         alignItems:'flex-start',
         justifyContent:'space-between',
@@ -58,7 +56,6 @@ export default function MessageSnippet(props) {
 
     const message_core_style_out = {
         fontFamily: `'Courier New', Courier, monospace`,
-        backgroundColor: "darkslategray",
         width:'85%',
         maxHeight:'250px',
         overflowY:'auto',
@@ -66,7 +63,6 @@ export default function MessageSnippet(props) {
         color:'',
         border: '2px solid hotpink',        
         borderRadius:'10px',
-        padding:'2px',
         display:'flex',
         alignItems:'flex-end',
         justifyContent:'space-between',

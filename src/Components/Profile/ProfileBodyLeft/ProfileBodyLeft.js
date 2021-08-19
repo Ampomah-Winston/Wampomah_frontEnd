@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef } from 'react';
 import { Droppable } from 'react-drag-and-drop';
-import { FaSearch, FaPlusCircle, FaToggleOn, FaAd, FaCheckDouble, FaArrowDown, FaAngleDown, FaUsers, FaUser } from 'react-icons/fa';
+import { FaPlusCircle,  FaCheckDouble, FaAngleDown, FaUsers, FaUser } from 'react-icons/fa';
 import GroupMember from '../../GroupMember/GroupMember';
 import Axios from 'axios';
 import GroupChatObject from '../../ChatObjects/GroupChatObject';

@@ -18,16 +18,7 @@ export default function User_Card(props) {
         return outColor;
     }
 
-    const userCardBody_Style = {
-        width:"10%",
-        maxWidth:"70%",
-        height:"9%",
-        maxHeight:"40%"
-    }
-
     const initiateChat = ()=>{
-
-
         Axios.post('http://localhost:5000/singlechat/create',{
             init_id : props.myid,
             coop_id : props.foundata.id
@@ -57,7 +48,7 @@ export default function User_Card(props) {
                            }
                         ))
                     })
-            }else if(res.data.code == 23505){
+            }else if(res.data.code === 23505){
                 //this is the case if chat already exist
                 //we will query the chatid.
                     console.log(res.data.code);
