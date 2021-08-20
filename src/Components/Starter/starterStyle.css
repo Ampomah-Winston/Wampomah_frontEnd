@@ -21,7 +21,7 @@ html,body{
     height: 100vh;
     background-color: hotpink;
     opacity: 0;
-    background-image: url('../../assets/images/png/triangles.png');
+    /* background-image: url('../../assets/images/png/triangles.png'); */
     background-size: cover;
 }
 
@@ -157,7 +157,7 @@ form{
     .profile-body{
         width: 100%;
         height: 100vh;
-        background-color: darkslategray;
+        /* background-color: hotpink; */
         overflow-y: hidden;
         background-image: url('../../assets/images/png/triangles.png');
     }
@@ -165,7 +165,7 @@ form{
     .profileNav-Body{
         width: 100%;
         height: 10%;
-        background-color: rgb(201, 81, 141);
+        background-color: darkslategray;
         color:rgb(0, 0, 0);
         /* background-image: url('../../assets/images/png/triangles.png'); */
         border-bottom: 2px solid linear-gradient(darkslategray,white);
