@@ -160,6 +160,7 @@ form{
         /* background-color: hotpink; */
         overflow-y: hidden;
         background-image: url('../../assets/images/png/triangles.png');
+        opacity: 0.7;
     }
 
     .profileNav-Body{
