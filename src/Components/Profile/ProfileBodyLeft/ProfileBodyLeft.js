@@ -72,35 +72,31 @@ function ProfileBodyLeft(props) {
                 handleDelFromList = {handleDelFromList}/>)
         })
     }
-
-    const togGroupBtn_Style = {
-        width:'80%',
-        height: '5%',
-        border:'none',
-        marginBottom: '7px',
-        marginTop: '7px'
-    }
     //load single chats user is involved
+    
+    let listChecker = []
+    let searchId = '';
     function load_single_chat(){ 
         Axios.post('http://localhost:5000/singlechat/getAll',{
             userID: profileData.id
         }).then(res=>{
-            console.log(' ==> ',res)
-            res.data.map(data=>{
+            res.data.map(data=>{                
+                searchId = profileData.id === data.init_id 
+                ? data.coop_id 
+                : data.init_id
                 Axios.post('http://localhost:5000/users/id',{
-                    id : data.coop_id
+                    id : searchId
                 }).then(res=>{
-                    setMySingleChats(prev=>[...prev,{
+                    listChecker.push({
                         fname:res.data[0].fname,
                         chatid:data.chatid
-                    }])
-                    // some.push
-                    console.log(res.data[0])
+                    })  
                 })
-            })
-
-
-            // setMySingleChats(res.data)
+            });
+            // console.log('singlea ==> ',listChecker);
+            setMySingleChats(listChecker);
+            listChecker = [];
+            
         });
     }   
 
@@ -109,13 +105,19 @@ function ProfileBodyLeft(props) {
         Axios.post('http://localhost:5000/chatGroup/myGroups',{
             userID: profileData.id
         }).then((res)=>{
+            // console.log('group list ', res.data)
             setMyGroups(res.data)
         })
     }
 
     useEffect(()=>{
-        load_single_chat();
-        load_groups();
+        let singleChatInterval = setInterval(() => {
+            load_single_chat()
+            load_groups();
+        }, 5000);        
+        return ()=> {
+            clearInterval(singleChatInterval)
+        }
     },[])
 
 //function to create group db ops
@@ -125,7 +127,10 @@ function ProfileBodyLeft(props) {
                  group_name : inp_grp_name.current.value,
                  group_owner: profileData.id
             },           
-            content : creatnGroupList
+            content : [...creatnGroupList,{
+                id:profileData.id,
+                uname:profileData.lname
+            }]
         }).then(res => {
             console.log(res)
             alert(`Group created successfully ${inp_grp_name.current.value}`)
@@ -144,9 +149,9 @@ function ProfileBodyLeft(props) {
                  </div>
                     
                  <div className="group_chat_collection">
-                 {mySingleChats.map((chatData)=>{
+                 {mySingleChats.map((chatData,index)=>{
                         return <GroupChatObject 
-                            key ={chatData.chatid} 
+                            key ={index} 
                             gname = {chatData.fname}
                             gid ={chatData.chatid}/>
                     })} 
@@ -157,9 +162,9 @@ function ProfileBodyLeft(props) {
                  </div>
 
                  <div className="group_chat_collection top-center-content">
-                    {myGroups.map((groupData)=>{
+                    {myGroups.map((groupData,index)=>{
                         return <GroupChatObject 
-                            key ={groupData.group_id} 
+                            key ={index} 
                             gname = {groupData.group_name}
                             gid ={groupData.group_id}/>
                     })}                    

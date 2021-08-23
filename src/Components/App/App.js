@@ -69,7 +69,7 @@ function GoogleClientLogin(props) {
             lname: profileObj.familyName,
             fname: profileObj.givenName,
             img: profileObj.imageUrl,
-            googleid: response.googleId
+            id: response.googleId
           }
           dispatch(setAuthorizedAction(true))
           dispatch(setProfileDataAction(userobj))
